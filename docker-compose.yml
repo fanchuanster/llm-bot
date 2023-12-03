@@ -1,11 +1,14 @@
 version: '3'
 
+# Testing env
+# 10.212.153.228
+
 services:
-  langflow:
-    image: garystafford/langflow:0.3.3
-    ports:
-      - "7860:7860"
-    container_name: langflow
+  # langflow:
+  #   image: garystafford/langflow:0.3.3
+  #   ports:
+  #     - "7860:7860"
+  #   container_name: langflow
 
   langchain:
     container_name: langchain
@@ -13,4 +16,8 @@ services:
       context: .
       dockerfile: langchain.dockerfile
     volumes:
-      - ./agent.py:/app/agent.py
+      - .:/app
+    command: python /app/agent.py $OPENAI_API_KEY
+    
+    
+    # python /app/agent.py $OPENAI_API_KEY
