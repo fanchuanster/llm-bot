@@ -1,0 +1,7 @@
+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
+
+pinecone
+2b1b30c3-b779-497a-b600-d8e52bd0a97f
+
+huggingface
+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

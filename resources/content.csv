@@ -1,0 +1,334 @@
+type,title,content,source
+doc,In-place ALM Upgrade ,"In-place ALM Upgrade 
+
+In-place ALM Upgrade consists of two automations respectively for ALM server upgrade and ALM projects upgrade, across major versions like from ALM 15.5 to ALM 17.01 (Refer to UpgradeAlm for minor-minor or patch upgrade) 
+
+ 
+
+(Please consult Wen, Mor for your first time going with the automations for a smooth experience) 
+
+Upgrade ALM servers – one by one 
+
+Open Inplace-UpgradeAlm job to upgrade ALM servers 
+
+https://almprodjenkins.saas.mihni corcrofocus.com/job/Inplace-UpgradeAlm/ 
+
+Text
+
+Description automatically generated 
+
+ 
+
+Fill the farm server name (e.g., ALMFRA250P-W01) to upgrade. Tested upgrade from 15.5x to ALM 16, and you can refer to ALM online help for the upgradable leap: 
+
+Table
+
+Description automatically generated 
+
+Make sure farm information in BackOffice is correct, particularly following 
+
+SA schema name  
+
+DB server name 
+
+ 
+
+Server IPs on the SERVERS tab 
+
+ 
+
+For SSO enabled farm, please manually remove the node from AWS LB target group 
+
+Choose Upgrade action 
+
+Choose the target version to upgrade to 
+
+Click build 
+
+Wait for the completion and verify it manually, before moving to next node 
+
+/bin/About.htm - does it show the upgraded version? 
+
+Login to projects to sanity check 
+
+FYI - If SSO enabled (external_auth_mode=Y), the automation automatically deploys OSP via RestartAlm / run_osp_deploy 
+
+ 
+
+Repeat the process for all the other ALM Web servers of the farm, node by node. 
+
+Upgrade farm version in BO only when all nodes are completed. 
+
+Till now, the upgraded SA schema is named {sa}_CPY, for example ALMLON051P_SA_CPY, once the upgraded farm is all verified, continue to run RestoreSaName node by node to restore the {sa}_CPY to {sa}                       
+once the action RestoreSaName is performed, no easy way to Rollback 
+
+Perform CleanupSAs to remove {sa}_CPY, {sa}_BAK intermediate schemas. 
+
+additional step when upgrading from 15.x to 17.01, i.e. login to WebAdmin to perform a dummy Save action for each customized role, until next ALM release 17.01 Patch01. 
+
+ 
+
+ 
+
+Upgrade Projects 
+
+Open the project upgrade Jenkins job - Inplace-UpgradeAlmProjects  
+
+https://almprodjenkins.saas.microfocus.com/job/Inplace-UpgradeAlmProjects/ 
+
+Fill the project names to upgrade, separated by comma, or leave it empty to upgrade all projects on the farm. Nothing will happen to a project that is already on the target version. 
+
+Graphical user interface, text
+
+Description automatically generated 
+
+Recover project in case of failure although unlikely, raise a ticket to DB team, with: 
+
+Failed project schemas and database server 
+
+When the upgrade was performed, so that they can recover it to the last point before it. 
+
+ 
+
+Update Backoffice 
+
+Update the farm information in Backoffice in the end: 
+
+Farm version ",https://opentextcorporation.sharepoint.com/:w:/s/MFI-ADMSaaSALMWW/ETQhti50Q1BEhhRO8S3xq_kB0l9duK-GpsFrReWru3WSpA?e=ZYODro
+doc,ALM-TimezoneModification,"Micro Focus ADM SaaS Delivery
+ALM QC Time Zone Change
+Created by: Version: Date: Comments:
+Mario Miranda Miranda 1 21/04/2022 Create the Document
+Description
+This document provides a guide on how to change the time zone for a server.
+Pre requistes
+1-Check with the database team what is the right port listener for the time zone you need to change 
+the perform the update.
+Server Procedure
+1-Login to the Linux nodes, please take the IP from BO if need it.
+2-Run the command , “sudo timedatectl” this to check the server actual time zone
+3-Run the command, “sudo timedatectl list-timezones” this to get the full list of time zones, please 
+select the time zone needs to be updated. Let’s supposed you want to update to New York time 
+zone , the time you need would be “America/New_York”
+4-Tp update the time zone on the server please run the command,” sudo timedatectl set-timezone 
+America/New_York” for this you need to replace the time zone in case to be different.
+5-verify sudo timedatectl (Verify new Time zone has been applied sucessfully)
+6-Update the connection string to use new port number for siteadmin.xml and qc.config.properties 
+file.
+/var/opt/ALM/webapps/qcbin/WEB-INF
+/var/opt/Micro Focus/ALM/conf
+Database procedure: 
+1.For example , Port, 1543=New York (get the port number for the time zone you need to be updated, 
+please check prerequisites)
+2Login with SQL developer to the sa schema and Update DBSERVERS table and the 
+DB_CONNTR_FORMAT column. We just need to change the port number for the JDBC connection 
+string.
+3.Update PROJECTS table and the DB_CONNTR_FORMAT column. Again, we just need to change the 
+port number for the JDBC connection string.
+Once everything has been performed please restart node by node in order to avoid an incident. If you 
+may take down the sis monitors it would be better , please use the next job: 
+https://almprodjenkins.saas.microfocus.com/job/DisableSisMonitor_all/
+Additional taks:
+1-Once the configuration has been performed please remember to check the site scope monitors 
+and update the query for Environment Health, which is related with the database connection, 
+otherwise you will get alerts , please make sure to update the port on the oracle string connection.
+2If you have doubts , you may find the connection in BO also. 
+2-Find the farm on the search bar, Go to environment Health, do a double click on the next 
+monitors: 
+3-A new window will open, please go to properties tab, and update the Database port: 
+4-Once the port has been updated, please select the “Verify and Save” at the bottom right of page: 
+5-Repeat the process for the next 7 monitors (we have 8 in total) 
+6-Go to Backoffice and update the infrastructure section with the new schemas port and perform 
+Test connectivity for all schemas:",https://opentextcorporation.sharepoint.com/:b:/s/MFI-ADMSaaSALMWW/ETfMbQAAGK5DkP4h6mLsz1IBYP4_RZhtOAPkNLNrdLlQaw?e=09f6XU
+doc,How to Decommission an LRE 202X tenant. ,"
+ 
+
+MicroFocus SaaS Production Team. 
+
+How to Decommission an LRE 202X tenant. 
+
+Product: ALM 
+
+Modified by: 
+
+Version: 
+
+Date: 
+
+Comments: 
+
+Failan Artavia 
+
+1 
+
+02/16/2021 
+
+ 
+
+Create the document  
+
+Paulo Henriquez 
+
+ 
+
+2 
+
+10/11/2022 
+
+ 
+
+ 
+
+Michael Mariano 
+
+3 
+
+10/11/2022 
+
+ 
+
+ 
+
+Atanas Stoyanov 
+
+4 
+
+13.06.2023 
+
+ 
+
+Noga Kronenfeld 
+
+5 
+
+19.11.2023 
+
+Added the deletion of the Tenant ID from the tenants.json file 
+
+ 
+
+Description  
+
+The purpose of this guide is to explain how to decommission an LRE2020 customer tenant. 
+
+ 
+
+​​Contents 
+
+​ 
+
+​ 
+
+​ 
+
+​​ 
+
+ 
+
+ 
+
+ 
+
+LRE2020 Customer tenant decommission process  
+
+ 
+
+Confirm with requester all data can be deleted. 
+
+Move the SaaS machines assigned to the customer to the LRE tenant. 
+
+Login to Site Management on the host farm. Navigate to the tenants module and deactivate the tenant. 
+
+ 
+
+ 
+
+Once the tenant is inactive, open it and take note of the database name and database users. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+NOTE: Open a case with the MONITORING team to remove the SiteScope monitors before removing the tenant. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Go back to tenants and now proceed with the tenant removal 
+
+ 
+
+Note: When removing the tenant, a configuration.json file will be created and downloaded, this will contain tenant properties in case needed.  
+
+ 
+
+ 
+
+Under each LRE Server node, navigate to: C:\Program Files (x86)\Micro Focus\LoadRunner Enterprise\dat.    Edit the tenants.json and make sure to remove the entire line with the specific Tenant ID.   This file is for the alerts, the LRE will try to access all the LABs of those tenants to check if there is an alert to trigger. 
+
+ 
+
+Next, we need to collect the list of repositories belonging to this tenant, for that we need to connect to the database using the SchemaUser, normally would be tenant_name_u. Example: lre2020_demo_presale_apj_u.  
+
+ 
+
+Once connected, look for the tenant database, navigate to the admin schema and look for the projects table. All the rows in the physical directory column are the folders that will need to be deleted.  
+
+ 
+
+ 
+
+Before removing all the physical directories, make sure to download a csv from pgadmin with all the details and upload them to the ticket for documentation purposes. 
+
+ 
+
+Note: Be careful as there could be very similar strings to the ones you need to delete. 
+
+ 
+
+Open the farm base repository path, you can see the path in MSM. 
+
+ 
+
+ 
+
+ 
+
+Identify the folders that need to be deleted and proceed. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Next, we will need to submit a case with the DBA team in SMAX to proceed with deleting the tenant and the tenant users. Make sure you provide the right tenant db list/users list (information) and document this on the decommission case. You can use SR00358364 as reference. 
+
+ Text
+
+Description automatically generatedGraphical user interface, text, application
+
+Description automatically generated 
+
+ 
+
+Go to Back Office and delete the tenant URL in the details section and Instance in customers’ account section. See screenshot for illustration. ",https://opentextcorporation.sharepoint.com/:w:/s/MFI-ADMSaaSALMWW/EVIc8t5fIBBIvoOlwILRZFsBVGJ0F5UrpaXVmECSGgPv7A?e=r93wJc
