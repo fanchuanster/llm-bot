@@ -1,4 +1,3 @@
-# from ubuntu:22.04
 from python:3.8
 
 RUN pip install -U langchain openai chromadb langchainhub bs4

@@ -11,6 +11,7 @@ services:
   #   container_name: langflow
 
   langchain:
+    image: langchain_img
     container_name: langchain
     build:
       context: .
@@ -18,6 +19,8 @@ services:
     volumes:
       - .:/app
     command: python /app/agent.py $OPENAI_API_KEY
+
     
     
     # python /app/agent.py $OPENAI_API_KEY
+    # docker run -v ./:/app/ langchain_img
