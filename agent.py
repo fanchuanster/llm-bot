@@ -1,3 +1,4 @@
+#  docker run -it -v ./:/app/ langchain_img python /app/agent.py
 
 import getpass
 import os, sys

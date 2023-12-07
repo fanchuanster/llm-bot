@@ -18,7 +18,9 @@ services:
       dockerfile: langchain.dockerfile
     volumes:
       - .:/app
-    command: python /app/agent.py $OPENAI_API_KEY
+    command: python /app/agent.py
+
+#  docker run -it -v ./:/app/ langchain_img python /app/agent.py
 
     
     
