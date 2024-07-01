@@ -29,443 +29,366 @@ class CustomLlamaLLM(LLM):
 # api_url = "http://10.210.34.38:8080"
 # api_key = "your_api_key_here"
 llama_model = CustomLlamaLLM()
-prompt = """ Below is the detailed description of a ticket, which may include interactions between the submitter and agents:
+prompt = """Below in between the <REF> and </REF> is the content of a ticket, which may include interactions between the submitter and agents. Please hold off responding until all the content is submitted which may be multiple submissions.
+	<REF>
 Ticket Metadata:
+Company: ALLFUNDS BANK SA
+Open_time: 2024-06-10T23:34:03-07:00
+Close_time: 
+Assignee: ajay.s
+Impact: 3 - Multiple Users
+Assignment: Frontline
 Status: updated
-Open_time: 2024-04-05T06:37:56-07:00
+Id: IM00488350
+Title: Problem when running API type tests unattended
 Priority: 2 (High)
-Assignment: SaaS ALM PC Production
-Resolution_code: 
-Severity: 1 (Very High)
-Impact: 4 - Single User
-Id: IM00486182
-Company: 3M COMPANY
-Title: Failed to Collate Results
-Close_time: 
-Assignee: daniela.gomez
-This is happening 2nd time with LRE SaaS. Following tests has failed to collate the results.
- 
-Run ID:
-17213
-17214
-17215
- 
-It will be helpful if you can recover the results from above runs. 
- 
-Thank You!
-The other 2 tickets for RUNIDS
-
-IM00486187 - RUNID 17214
-
-IM00486188 - RUN ID 17215
-- - -
-
-&#06;All the runs could be found from: 
-Domain: SAP
-Project: Polaris
-- - -
-
-RUN 17213
-
-Domain: SAP
-
-Project: Polaris
-
-Controller LREORG025P-C5
-	
-IP 10.210.10.153
-
-LG lgprodsvr58.mmm.com(80);
-lgprodsvr52.mmm.com(69);
-lgprodsvr78.mmm.com(58);
-lgprodsvr53.mmm.com(100);
-lgprodsvr55.mmm.com(43);
-lgprodsvr54.mmm.com(74);
-lgprodsvr87.mmm.com(39);
-lgprodsvr90.mmm.com(110);
-lgprodsvr83.mmm.com(39);
-lgprodsvr82.mmm.com(39);
-lgprodsvr81.mmm.com(40);
-lgprodsvr89.mmm.com(112);
-lgprodsvr57.mmm.com(40);
-lgprodsvr56.mmm.com(75);
-lgprodsvr85.mmm.com(39)
-
-https://lremmm.saas.microfocus.com/LRE/?tenant=1dbe834a-7489-47af-a488-bdfdc45ed841
-
-SSO URLs:
-
-Admin:
-https://lremmm.saas.microfocus.com/admin/adminx/login?tenant=1dbe834a-7489-47af-a488-bdfdc45ed841&saas-auth=internal
-
-Projects:
-https://lremmm.saas.microfocus.com//Loadtest/pcx/app/dashboard?tenant=1dbe834a-7489-47af-a488-bdfdc45ed841&saas-auth=internal
-- - -
-
-Collation completed, files uploaded, No Vusers LOGs folder for this RUN.
-- - -
-
-Hello Ajay,
-
-We are following up on the request SD00477942
-
-We have manually collated the results for RUN ID 17213
-
-Please check and confirm.
-
-Regards,
-Leonardo Salazar
-Open text Software-as-a-Service
-Toll Free: +1 855 525 9252
-&#06;Thanks! I can see the results now. But why did this happen as its happening 2nd time. I noticed all the 3 runs kept running for over 23hrs, whereas test was designed to run only for about 6.5hrs. So question is why the Controller failed to force stop the test at 6.5hrs. In past I created ticket SD00475879 for exact same issue. It would be great if you can help find a permanent fix for this issue just so it doesn't happen in future tests. Appreciate your support!
-- - -
-
-Hello team can you help to check why this test lasted more than 23 hours instead of the 6 hours configure?
-
-*******Bosco confirmed this can be send to LRE queue*******
-
-After checking the EVENT LOG for RUN ID 17213 I can see the test was expected to run for around 6 hours and ran for +23 hours.
-
-Checking the event LOG I see an event that lasted around 16 hours, from April 4th 3 pm, until April 5th 7 am
-(check attachment Event LOG run ID17213.JPG)
-
-More details:
-
-RUN ID 17213
-
-Domain: SAP
-Project: Polaris
-
-Controller LREORG025P-C5
-	
-IP 10.210.10.153
-
-Up time 17 days
-
-SSO URLs:
-
-Admin:
-
-https://lremmm.saas.microfocus.com/admin/adminx/login?tenant=1dbe834a-7489-47af-a488-bdfdc45ed841&saas-auth=internal
-
-Projects:
-
-https://lremmm.saas.microfocus.com//Loadtest/pcx/app/dashboard?tenant=1dbe834a-7489-47af-a488-bdfdc45ed841&saas-auth=internal
-- - -
-
-Hello Ajay,
-
-I'm Daniela Gomez from SaaS Delivery team, I'll be assisting you on this case.
-
-Let me review your case and I'll update you soon
-
-Regards
-Daniela Gomez
-Lead Cloud Applications Engineer
-- - -
-
-checking
-- - -
-
-.
-- - -
-
-wip
-- - -
-
-Last Update SLO Breached - 2 00:00:17 Hrs passed. Assignee: daniela.gomez
-Greetings,
-
-I want to let you know that I'm still working on your case.
-
-As soon as I have an update I'll let you know.
-Regards,
-- - -
-
-.
-- - -
-
-Last Update SLO Breached - 2 00:00:21 Hrs passed. Assignee: daniela.gomez
-cheking.
-- - -
-
-.
-- - -
-
-wip
-- - -
-
-.
-- - -
-
-wip
-- - -
-
-.
-- - -
-
-.
-- - -
-
-.
-- - -
-
-wip
-- - -
-
-.
-- - -
-
-.
-- - -
-
-.
-- - -
-
-.
-- - -
-
-.
-- - -
-
-Greetings,
-An update will be providing soon.
-Regards
-- - -
-
-Please provide a technical summary of the ticket for review progress and status. Also, rigorously evaluate the customer sentiment score, customer satisfaction score, and agent service quality score, on a scale of 1-10, based on the ticket handling process regardless of the impact and severity of the issue reported or experienced, to enable the manager to identify cases of low satisfaction early and take proactive intervention. 
-	Then evaluate the Criticality Score on a 1 (least-critical) - 10 (most-critical) scale by the ticket Metadata \"Impact\", \"Severity\" and \"Priority\" and the context. Finally, suggest necessary follow-up actions. Expected output: 
-	- Technical Summary: 
-	- Customer Sentiment Score: 
-	- Customer Satisfaction Score: 
-	- Service Quality Score: 
-	- Criticality Score:
-	- Follow-up Actions:
-	If insufficient context details are available, assume a high score. Only evaluate based on the facts happened but not guessing or assumption for the future
-2024/06/23 09:11:07 ====================== Result ====================
-2024/06/23 09:11:07 IM00486182:  Technical Summary: The ticket is related to a load testing issue where the controller failed to force stop the test after 6.5 hours, resulting in the test running for over 23 hours. The assignee, Daniela Gomez, is investigating the issue and checking the event log for more information.
-Customer Sentiment Score: 7 (Neutral)
-The customer seems to be frustrated with the length of time the test took, but they also acknowledge that the issue has been raised before and there might be a permanent fix needed. They appreciate the support received so far.
-
-Customer Satisfaction Score: 6 (Fairly Unsatisfied)
-While the customer is satisfied with the initial response and acknowledgment of their query, they are unhappy with the duration of the test and the fact that it exceeded the configured time limit.
-
-Service Quality Score: 8 (Good)
-The agent responded promptly and provided clear updates throughout the conversation. However, the issue itself is causing dissatisfaction.
-
-Criticality Score: 8 (High)
-Based on the Impact, Severity, and Priority metadata, this ticket is considered highly critical. The test failure caused significant delays and affected the overall performance of the system.
-Follow-up Actions:
-
-1. Escalate the issue to the appropriate teams for further investigation and resolution.
-2. Provide regular updates to the customer until the issue is resolved.
-3. Review the Load Test configuration and ensure that it is set up correctly to prevent similar issues in the future.
-2024/06/23 09:11:07 Progress 2/320 - IM00488596
-2024/06/23 09:11:14 ====================== Prompt ====================
-2024/06/23 09:11:14 Below is the detailed description of a ticket, which may include interactions between the submitter and agents:
-Ticket Metadata:
-Priority: 3 (Medium)
-Assignment: Frontline
-Company: ACCENTURE PEOPLESOFT TEAM
-Close_time: 
-Assignee: Hamsa.Selvarajan
-Impact: 4 - Single User
-Resolution_code: 
-Status: updated
-Id: IM00488596
-Title: Cannot login to VuGen - LoadRunner Cloud Integration
-Open_time: 2024-06-18T20:45:10-07:00
 Severity: 2 (High)
-hen trying to Login/Aunthenticate via VuGen
-Following error shows
- 
- 
-Authentication failed with error: Post https://loadrunner-cloud.saas.microfocus.com/v1/auth?TENANTID=918843891: read tcp 10.18.161.22:6088->52.89.63.41:443: wsarecv: An existing connection was forcibly closed by the remote host.
-Please provide a technical summary of the ticket for review progress and status. Also, rigorously evaluate the customer sentiment score, customer satisfaction score, and agent service quality score, on a scale of 1-10, based on the ticket handling process regardless of the impact and severity of the issue reported or experienced, to enable the manager to identify cases of low satisfaction early and take proactive intervention. 
-	Then evaluate the Criticality Score on a 1 (least-critical) - 10 (most-critical) scale by the ticket Metadata \"Impact\", \"Severity\" and \"Priority\" and the context. Finally, suggest necessary follow-up actions. Expected output: 
-	- Technical Summary: 
-	- Customer Sentiment Score: 
-	- Customer Satisfaction Score: 
-	- Service Quality Score: 
-	- Criticality Score:
-	- Follow-up Actions:
-	If insufficient context details are available, assume a high score. Only evaluate based on the facts happened but not guessing or assumption for the future
-2024/06/23 09:11:14 ====================== Result ====================
-2024/06/23 09:11:14 IM00488596:  Technical Summary: The user is unable to log in to VuGen due to an authentication failure with the error message "Post https://loadrunner-cloud.saas.microfocus.com/v1/auth?TENANTID=918843891: read tcp 10.18.161.22:6088->52.89.63.41:443: wsarecv: An existing connection was forcibly closed by the remote host.".
-Customer Sentiment Score: 8/10
-The customer's sentiment can be inferred from their use of strong language such as "cannot login" and "error message". However, there is no indication of frustration or anger, suggesting that the customer's emotional state is neutral rather than negative.
-Customer Satisfaction Score: 6/10
-Based on the information provided, it seems unlikely that the customer is satisfied with the current level of support they are receiving. The lack of success in resolving the issue after multiple attempts suggests that the customer's expectations have not been met.
-Service Quality Score: 7/10
-While the agent has responded promptly and provided some troubleshooting steps, the resolution of the issue remains elusive. This could indicate a gap in the service quality delivered by the agent.
-Criticality Score: 9/10
-Given the high priority assigned to this ticket and the severe impact on the customer's ability to access VuGen, the criticality score is relatively high.
-Follow-up Actions:
-* Escalate the ticket to a higher-level engineer for further investigation and resolution.
-* Provide
-2024/06/23 09:11:14 Progress 3/320 - IM00488097
-2024/06/23 09:11:22 ====================== Prompt ====================
-2024/06/23 09:11:22 Below is the detailed description of a ticket, which may include interactions between the submitter and agents:
-Ticket Metadata:
-Open_time: 2024-05-31T07:47:59-07:00
-Close_time: 
-Severity: 3 (Medium)
-Impact: 4 - Single User
 Resolution_code: 
-Id: IM00488097
-Company: ACCENTURE_ALM
-Title: Change Date format in Defect Business Reports as per Client Request
-Assignee: jose.vargas
-Priority: 3 (Medium)
-Assignment: Frontline
-Status: updated
-Change Date format from DD-MMM-YY to MM-DD-YY in the Business Graph/Report to be able to automatically sort the dates by default. This is a request from Client.
-to me-.
+When executing a test set of automatic API type tests from the automatic runner, sometimes, randomly, since it does not follow any pattern that we have been able to locate, the ALM automatic runner application gives the following error messages in some tests when launch the execution. This problem happens to us in all projects and with different users.
+The error messages that we have been able to review that it returns are:
+ 
+\"The connection to the specified ALM server failed\"
+\"Remote procedure call error, RCP Server unavailable\"
+ 
+We attach in the document some evidence of the problem of the tests that we have carried out both from ALM and from Jenkins.
+Hello SOC Team,
+
+Kindly check on this request and advise. Thanks!
 - - -
 
-Hi Mark,
+Dear team,
 
-Thank you for contacting Open Text.
+Please involve the GSD team on this case.
 
-Could you please provide us with the following information for us to be able to give you a better support.
+If they need delivery help , you might contact us.
 
-ALM URL
-Domain and Project name
-Availability with working hours
-Contact Information
+Thank you,
+Georgi Georgiev
 
-Regards,
-Jose Vargas
+OpenText SaaS Team
+- - -
+
+&#06;Hello Team,
+We indicate the requested information
+Software version - UFT2022
+OS System - Windows server 2016 / windows 10
+Contact Person- Zeus Algaba / Rafael Garzón
+Email ID - zeus.algaba@inetum.com / rafael.garzon@allfunds.com
+Phone number - NA (teams meeting)
+Time Zone - GMT+2
+Working hours - 08:00 - 17:00 
+Is it reproducible (Y/N)? Y
+Steps to reproduce:
+	1. open ALM :https://almallfundsbank.saas.microfocus.com/qcbin/
+	2. Enter the project “AFAPP_86_APPIAN”
+	3. Go to the test lab module
+	4. Go to the test set “TESTSET_OPEN_TEXT_APIS_PROBLEM” located in
+ 		/Root/ AFAPP_86_APPIAN/functional/PRE/Appian/PRE/ 
+	5. Click on “run test set”
+	6. Click on the run all button on the pop-up screen.
+	7. Wait for the test results (takes 10 mins max)
+Affecting all users (Y/N)? Y
+Summary of troubleshooting steps performed: Some of the tests executed randomly give the messages reported in the incident summary.
+Thank you,
+- - -
+
+&#06;Additionally we include the ALM server version
+ 
+ALM_HELP.PNG was attached.
+- - -
+
+Hello Team,
+
+Following the issue in Support Case SD00481350 please review the information below:
+
+Due to the nature of your request, we have opened case 02894927 with Micro Focus Software Support  on your behalf and have asked them to contact you directly.
+
+This Support Request is currently marked Pending Vendor.
+
+Thank you,	
+S Ajay Kumar
 OpenText Software-as-a-Service
 Toll Free: +1 855 525 9252
-&#06;ALM URL: https://almaccentureprod.saas.microfocus.com/qcbin/
-Domain: ASMPT
-Project name: ASMPT 
-Availability with working hours: 9AM to 7PM SGT
-Contact Information: email via mark.jason.bongalos@accenture.com
 - - -
 
-ALM version 17.01
-Patch Level 0
-- - -
+Hello,
 
-Hi Mark,
+Please find the below update from software support team.
+- - ---------------------------------
 
-Following the issue in Support Case SD00480873, please review the information below:
+Hello Team,
 
-Due to the nature of your request, we have opened the case 02887562 with Open Text Software Support on your behalf.
+Thank you for contacting OpenText.
 
-They will be contacting you via email.
+My name is Emmanuel from EMEA ALM/Octane Support Team.
 
-Regards,
-Jose Vargas
+Regarding the error in your environment, this seems that there is a communication issue into both applications; please follow these steps below:
+•	Close UFT.
+•	Opened IE as administrator (right-click IE > Run as Administrator) and navigated to ALM Tools.
+•	From the ALM Tools page, selected \"ALM Connectivity\" and download/run on the affected client machine.
+•	You should receive an \"Installation Successful\" message. From the ALM Tools page
+•	Selected \"ALM Client Registration\" and \"Register ALM.\"
+•	Log into your ALM Client to make sure that works.
+•	Run UFT as administrator
+•	Could now log into ALM from UFT and run UFT tests from ALM
+
+SUMMARY
+Please try to uninstall the ALM Client.
+Re-register the client - http://<servername>:8080/qcbin/addins.html
+Download HP ALM Connectivity Add in - http://<servername>:8080/qcbin/addins.html
+
+In UFT:
+Please make sure ALM connectivity is selected during configuration
+Launch the UFT Client and see if you can connect to ALM and perform Test.
+
+Expecting your feedback.
+
+- - ---------------------------------
+
+Thank you,
+Shoney Thomas
 OpenText Software-as-a-Service
 Toll Free: +1 855 525 9252
 - - -
 
-Update from GSD to SaaS.
-----------------------------------
-Hello Saas team,
-
-Thank you for contacting Opentext Support Customer.
-My name is Fabian Esquivel from the QC/ALM Support Team and I will assist you with your case
-
-The reason why i'm contacting you first that customer it is that actual date time by default come from the server.
-
-please find note provided by R&D directly
-
-\"Date format in project report is based on ALM server locale setting which is different from the ALM client UI. ALM client UI is based on the client OS setting.\"
-
-Could you please review if the server is using that format and let me know it.
-
-I'll be pending.
-----------------------------
+&#06;Good afternoon,
+ 
+We have carried out the indicated steps and we have carried out several tests, and the result has been KO, since we reproduced the problem (some tests give the result \"failed condition, because not executing any of the functionalities impacts not being able to execute the next one. ) 
+ 
+As you can see in different executions, different tests are the ones that present problems when executing them.
+ 
+We attach the evidence and are waiting for next steps.
+ 
+Thank you so much,
+Regards!
+ 
+Evidences SD00481350.docx was attached.
 - - -
 
-Hello Mark,
+Hello Team,
 
-Our Software Support Team has now assigned an Engineer Fabian Esquivel, you should see an email from him email subject:
+Thank you for the update. We have forwarded your recent mail to our support team. They would check and update you soon.
 
-“02887562-SaaS Customer ACCENTURE_ALM SD00480873 Change Date format in Defect Business Reports as per Client Request”
+Thank you,
+S Ajay Kumar
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
 
-The case has been updated with the following:
+&#06;Good morning,
+ 
+Our availability is from 08:00 -15:00 GMT+2.
+ 
+They are not very large tests, and it also passes in several different tests and we have not detected that the size of the test could be a reason for what is happening.
+ 
+We attach a screenshot of the agent of one of the test execution machines.
+ 
+Thank you so much,
+Regards!
+ 
+AgentConfig.docx was attached.
+- - -
 
-Hello Josue,
+Hello Team,
 
-This is in the application server.
+We have conveyed your recent mail to our support team. They would investigate further and provide you the updates.
 
-it will be depending if it is Windows or Linux,
+Thank you,
+S Ajay Kumar
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
 
-for example in Linux, you can review this by going to Windows, settings. date and time. time format,
+&#06;Good afternoon,
+ 
+We attach the requested information, we have carried out the exercise and the numerous logs with the timestamp that the tool automatically generates, in those logs there are two or three tests that have gone well and one that has given the reported problem.
+ 
+Thank you so much,
+Regards,
+ 
+LogsApis.zip was attached.
+- - -
 
-ALM will user the server time setting present in the client UI. this is a change that can't be done in the application directly and will affect the entire system,
+Hi Zeus,
 
-Since it is saas it is not recommended to change this due this changes affect all users.
+Thanks for the update. We have shared the attached file with the support team and will keep you posted once we recive an update.
 
+Thank you,
+Smitha Madhavan
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
 
+Hello,
 
-This will be something that has to be discussed internal with saas.
-
-Please let me know how would you like to proceed.
-
-Regards.
-*****End of Software Support Email Communication
-
-Take into consideration that our Software Support Team will continue communication through case 02887562.
-
-Please check your inbox for any new emails and remember you can always reply directly to our Software Support team, they will be waiting for your response.
+We are looking forward to your response, Kindly keep us posted on the status from your end.
 
 
 Thank you,
-
-Hellen Mata
+Hamsa Selvaraj
 OpenText Software-as-a-Service
 Toll Free: +1 855 525 9252
 - - -
 
-Hello Mark,
+Hello,
 
-We would like to know if you received our previous communication?
+Please find the below update from software support team
+- - ----------------------
+
+Hello @Algaba-Porras Zeus,
+
+1. Please can you confirm what is your UFT version?
+
+2.  Also about this error- The connection to the specified ALM server failed
+If you open UFT and connect to ALM from there- will it always connect without issues if you try few times?
+
+However, if the UFT hosts are also on @MFI-SaaS Tier1 Support servers, we could check them directly (I am not sure if that is the case here).
+
+3.  At the same time- can we have a meeting with @MFI-SaaS Tier1 Support team/engineer to test the below steps? Since you told us exactly how to reproduce it, can we get some logs and decide what to do next.
+
+We would do this- (+ some logs gathering)
+>> open ALM :https://almallfundsbank.saas.microfocus.com/qcbin/
+>> Enter the project “AFAPP_86_APPIAN”
+>> Go to the test lab module
+>> Go to the test set “TESTSET_OPEN_TEXT_APIS_PROBLEM” located in /Root/ AFAPP_86_APPIAN/functional/PRE/Appian/PRE/
+>> Click on “run test set”
+>> Click on the run all button on the pop-up screen.
+>> Wait for the test results and the error pops out.
+
+Expecting update from the @MFI-SaaS Tier1 Support @Smitha Madhavan team for a meeting.
+
+- - -------------------------------------------
 
 Thank you,
-Eduardo Flores
+Shoney Thomas
 OpenText Software-as-a-Service
 Toll Free: +1 855 525 9252
 - - -
 
-Hi Mark,
+Hello,
 
-We would like to know if you could check our previous communication?
+Please be informed on the recent update from the Software support team and let us know the required UFT version details to progress on this case.
 
-This change will be affecting the entire instance including all the existing projects the customer has at the moment, with this being said, would you like us to consult our production team to see if this is change can be done?
-
-Regards,
-Jose Vargas
+Thank you,
+Hamsa Selvaraj
 OpenText Software-as-a-Service
 Toll Free: +1 855 525 9252
-Message from GSD to us.
----------------------------------
-Hello Saas team,
-
-I hope you are doing great.
-
-We haven’t hear back from customer, I would like to know base on the configuration is directly in the saas server I would like to request the closure of the case. If a problem come making this change or have additional dobuts. You can reach me our directly.
-
-Please let us know if it is ok for us to proceed.
-
-Thanks for your comprehension
----------------------------------------------
-We will re-open the case if needed.
 - - -
 
-Please provide a technical summary of the ticket for review progress and status. Also, rigorously evaluate the customer sentiment score, customer satisfaction score, and agent service quality score, on a scale of 1-10, based on the ticket handling process regardless of the impact and severity of the issue reported or experienced, to enable the manager to identify cases of low satisfaction early and take proactive intervention. 
-	Then evaluate the Criticality Score on a 1 (least-critical) - 10 (most-critical) scale by the ticket Metadata \"Impact\", \"Severity\" and \"Priority\" and the context. Finally, suggest necessary follow-up actions. Expected output: 
-	- Technical Summary: 
-	- Customer Sentiment Score: 
-	- Customer Satisfaction Score: 
-	- Service Quality Score: 
-	- Criticality Score:
-	- Follow-up Actions:
-	If insufficient context details are available, assume a high score. Only evaluate based on the facts happened but not guessing or assumption for the future"""
+&#06;Good morning, 
+ 
+1.	Our UFT version is Version 2022 build 1004
+ 
+2.	Yes, we haven’t problems with ALM connection from UFT
+ 
+Thanks
+- - -
+
+Please hold off for more information.../nContinue
+Hello,
+
+Thanks for the update. We have informed the support team on the same and will keep you posted on the updates shortly.
+
+Thank you,
+Smitha Madhavan
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+Hello,
+
+Our software support team is handling this case internally.
+
+We will update you as soon as we receive more information.
+
+Thank you,
+Doji John
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+Hello Alejandro,
+
+Thank you for confirming the availability. The same has been updated to software support team.
+
+Thank you,
+Shoney Thomas
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+Hi Alejandro,
+
+We have followed up with Software support team to provide you with new updates,  Kindly look forward to the email from the team.
+
+Thank you,
+Hamsa Selvaraj
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+&#06;Hello, 
+ 
+I attach the logs of the tests, it failed shortly after finishing the meeting as well as some screenshots of the moment of the error. If any file is missing, please tell me which one. 
+Thanks
+ 
+LOGS.zip was attached.
+ErrorALM.png was attached.
+Scheduler_2406_121244.log was attached.
+- - -
+
+Hello,
+
+Thank you for attaching the logs. The same information has been shared to software support team.
+
+Thank you,
+Shoney Thomas
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+Hello
+
+Our Software Support team is still working on the issue and will keep you posted with the updates once we hear from them.
+
+ Thank you,
+Madhu Bala M
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+Hello Team,
+
+We have discussed this with our internal team and got an update that
+
+-  ALM have plenty of disk space
+-  DB servers is fine
+ - They safe-restarted the farm with the health checker enabled.
+
+Our team suggested to try to run the tests again and let us know the outcome.
+
+We will stay attentive to your comments.
+
+Thank you,
+S Ajay Kumar
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+- - -
+
+Hello Team,
+
+Please be aware of the recent update from Software Support team.
+
+Looking forward to your response.
+
+Thank you,
+Doji John
+OpenText Software-as-a-Service
+Toll Free: +1 855 525 9252
+</REF>
+Provide a technical summary of the ticket for progress and status review. Also, rigorously evaluate the Customer Sentiment Score, customer satisfaction score, and agent service quality score, on a scale of 1-10, regardless of the impact and severity of the issue reported, to enable the manager to identify cases of low satisfaction early and take proactive intervention. 
+	Then evaluate the Criticality Score on a 1 (least) - 10 scale by the ticket Metadata "Impact", "Severity" and "Priority". Finally, suggest necessary follow-up actions. Please respond STRICTLY confirming to following JSON format without extraneous: 
+	{"Technical Summary": "<summary>", "Customer Sentiment Score": <integer>, "Customer Satisfaction Score": <integer>, "Service Quality Score": <integer>, "Criticality Score": <integer>, "Follow-up Action": "<Actions>"}
+	Evaluate only based on the facts provided. The scores fields should be inegers without explanation beside. Double check if it confirms to JSON format."""
 result = llama_model(prompt=prompt, max_new_tokens=5000)
 print("Generated Text:", result)
