@@ -30,27 +30,6 @@ def format_docs(docs):
     # return "\n\n".join(doc.page_content for doc in docs)
     return docs[0].page_content if docs else "no context"
 
-def get_condense_q_chain(llm):
-    condense_q_system_prompt = """Given a chat history and the latest user question \
-    which might reference the chat history, formulate a standalone question \
-    which can be understood without the chat history. Do NOT answer the question, \
-    just reformulate it if needed and otherwise return it as is."""
-    condense_q_prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", condense_q_system_prompt),
-            MessagesPlaceholder(variable_name="chat_history"),
-            ("human", "{question}"),
-        ]
-    )
-    condense_q_chain = condense_q_prompt | llm | StrOutputParser()
-    return condense_q_chain
-
-def condense_question(input: dict):
-    if input.get("chat_history"):
-        return get_condense_q_chain(get_llm())
-    else:
-        return input["question"]
-
 def main():
     
     dotenv.load_dotenv()
