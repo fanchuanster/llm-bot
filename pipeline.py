@@ -16,12 +16,12 @@ tokenizer=AutoTokenizer.from_pretrained(model_name)
 with init_empty_weights():
     model = AutoModelForCausalLM.from_config(AutoConfig.from_pretrained(model_name))
 
-model = load_checkpoint_and_dispatch(
-    model,
-    checkpoint=model_name,
-    device_map="auto",
-    offload_folder="offload"  # Folder where parts of the model will be offloaded to
-)
+# model = load_checkpoint_and_dispatch(
+#     model,
+#     checkpoint=model_name,
+#     device_map="auto",
+#     offload_folder="offload"  # Folder where parts of the model will be offloaded to
+# )
 
 terminators = [
     tokenizer.eos_token_id,
