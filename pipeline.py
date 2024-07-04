@@ -1,4 +1,4 @@
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, AutoConfig
 from accelerate import init_empty_weights, load_checkpoint_and_dispatch
 import torch
 import logging
@@ -13,8 +13,7 @@ logger.info(f"from_pretrained {model_name} ...")
 tokenizer=AutoTokenizer.from_pretrained(model_name)
 
 with init_empty_weights():
-    # model = AutoModelForCausalLM.from_config(model_name)
-    pass
+    model = AutoModelForCausalLM.from_config(AutoConfig.from_pretrained(model_name))
 
 model = load_checkpoint_and_dispatch(
     model,
