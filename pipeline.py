@@ -31,7 +31,7 @@ pipeline=pipeline(
     max_new_tokens=256,
     eos_token_id=terminators,  # I already set the eos_token_id here, still no end for its self-coververstaion
     pad_token_id=tokenizer.eos_token_id,
-#     cache_dir="./cache"
+    cache_dir="./cache"
     )
 
 logger.info("construct HuggingFacePipeline")
