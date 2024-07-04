@@ -28,6 +28,13 @@ terminators = [
     tokenizer.convert_tokens_to_ids("<|eot_id|>")
 ]
 
+pipeline = pipeline(
+"text-generation",
+model=model_name,
+model_kwargs={"torch_dtype": torch.bfloat16},
+device_map="auto",
+)
+
 logger.info("construct pipeline")
 # pipeline=pipeline(
 #     "text-generation",
