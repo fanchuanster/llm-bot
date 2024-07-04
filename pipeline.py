@@ -13,7 +13,8 @@ logger.info(f"from_pretrained {model_name} ...")
 tokenizer=AutoTokenizer.from_pretrained(model_name)
 
 with init_empty_weights():
-    model = AutoModelForCausalLM.from_config(model_name)
+    # model = AutoModelForCausalLM.from_config(model_name)
+    pass
 
 model = load_checkpoint_and_dispatch(
     model,
