@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer
 from transformers import pipeline
+from accelerate import init_empty_weights, load_checkpoint_and_dispatch
 import torch
 import logging
 
@@ -7,10 +8,20 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 logger = logging.getLogger(__name__)
 
-model="meta-llama/Meta-Llama-3-8B-Instruct"
+model_name="meta-llama/Meta-Llama-3-8B-Instruct"
 
-logger.info(f"from_pretrained {model} ...")
-tokenizer=AutoTokenizer.from_pretrained(model)
+logger.info(f"from_pretrained {model_name} ...")
+tokenizer=AutoTokenizer.from_pretrained(model_name)
+
+with init_empty_weights():
+    model = AutoModelForCausalLM.from_config(model_name)
+
+model = load_checkpoint_and_dispatch(
+    model,
+    checkpoint=model_name,
+    device_map="auto",
+    offload_folder="offload"  # Folder where parts of the model will be offloaded to
+)
 
 terminators = [
     tokenizer.eos_token_id,
@@ -31,7 +42,7 @@ pipeline=pipeline(
     max_new_tokens=256,
     eos_token_id=terminators,  # I already set the eos_token_id here, still no end for its self-coververstaion
     pad_token_id=tokenizer.eos_token_id,
-    cache_dir="./cache"
+    offload_folder="offload"
     )
 
 logger.info("construct HuggingFacePipeline")
