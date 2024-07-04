@@ -9,7 +9,8 @@ logger = logging.getLogger(__name__)
 
 model_name="meta-llama/Meta-Llama-3-8B-Instruct"
 
-disk_offload(model=model_name, offload_dir="offload")
+model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, low_cpu_mem_usage = True)
+disk_offload(model=model, offload_dir="offload")
 
 logger.info(f"from_pretrained {model_name} ...")
 
