@@ -1,5 +1,5 @@
 from transformers import AutoTokenizer
-from transformers import pipeline
+from transformers import pipeline, AutoModelForCausalLM
 from accelerate import init_empty_weights, load_checkpoint_and_dispatch
 import torch
 import logging
