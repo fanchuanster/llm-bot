@@ -1,5 +1,5 @@
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM, AutoConfig
-from accelerate import init_empty_weights, load_checkpoint_and_dispatch
+from accelerate import init_empty_weights, load_checkpoint_and_dispatch, disk_offload
 import torch
 import logging
 
@@ -9,12 +9,14 @@ logger = logging.getLogger(__name__)
 
 model_name="meta-llama/Meta-Llama-3-8B-Instruct"
 
+disk_offload(model=model_name, offload_dir="offload")
+
 logger.info(f"from_pretrained {model_name} ...")
 
 tokenizer=AutoTokenizer.from_pretrained(model_name)
 
-with init_empty_weights():
-    model = AutoModelForCausalLM.from_config(AutoConfig.from_pretrained(model_name))
+# with init_empty_weights():
+#     model = AutoModelForCausalLM.from_config(AutoConfig.from_pretrained(model_name))
 
 # model = load_checkpoint_and_dispatch(
 #     model,
@@ -27,12 +29,11 @@ terminators = [
     tokenizer.eos_token_id,
     tokenizer.convert_tokens_to_ids("<|eot_id|>")
 ]
-
 pipeline = pipeline(
-"text-generation",
-model=model_name,
-model_kwargs={"torch_dtype": torch.bfloat16},
-device_map="auto",
+    "text-generation",
+    model="offload",
+    model_kwargs={"torch_dtype": torch.bfloat16},
+    device_map="auto",
 )
 
 logger.info("construct pipeline")
