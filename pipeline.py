@@ -1,6 +1,3 @@
-from langchain.llms.base import LLM
-from typing import Optional, List
-from langchain.prompts import PromptTemplate
 from transformers import AutoTokenizer
 from transformers import pipeline
 import torch
