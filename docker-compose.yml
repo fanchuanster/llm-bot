@@ -1,28 +1,18 @@
-version: '3'
-
-# Testing env
-# 10.212.153.228
+version: '3.8'
 
 services:
-  # langflow:
-  #   image: garystafford/langflow:0.3.3
-  #   ports:
-  #     - "7860:7860"
-  #   container_name: langflow
+  chromadb:
+    image: chromadb/chroma
+    container_name: chromadb
+    ports:
+      - 8000:8000
 
-  langchain:
-    image: langchain_img
-    container_name: langchain
-    build:
-      context: .
-      dockerfile: langchain.dockerfile
+  cmd:
+    image: ghcr.io/huggingface/neuronx-tgi:latest
+    container_name: aviator
+    privileged: true
+    command: ["--model-id", "/data/$MODEL_PATH-neuron"]
     volumes:
-      - .:/app
-    command: python /app/agent.py
-
-#  docker run -it -v ./:/app/ langchain_img python /app/agent.py
-
-    
-    
-    # python /app/agent.py $OPENAI_API_KEY
-    # docker run -v ./:/app/ langchain_img
+      - /mnt/data:/data
+    ports:
+      - 8080:80
