@@ -16,3 +16,26 @@ services:
       - /mnt/data:/data
     ports:
       - 8080:80
+
+
+
+
+
+# docker run --entrypoint optimum-cli \
+#        -v /mnt/data:/data \
+#        --privileged \
+#        -e HF_TOKEN=${HF_TOKEN} \
+#        ghcr.io/huggingface/neuronx-tgi:latest \
+#        export neuron \
+#        --model $MODEL_PATH \
+#        --auto_cast_type fp16 \
+#        --num_cores 2 \
+#        /data/$MODEL_PATH-neuron
+
+  # docker run -d -p 8080:80 \
+  #      -v /mnt/data:/data \
+  #      --name aviator \
+  #      --rm \
+  #      --privileged \
+  #      ghcr.io/huggingface/neuronx-tgi:latest \
+  #      --model-id /data/$MODEL_PATH-neuron
