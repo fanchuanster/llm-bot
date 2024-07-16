@@ -1,6 +1,7 @@
 from vllm import LLM
 
-# mistralai/Mistral-7B-Instruct-v0.3
+# mistralai/Mistral-7B-Instruct-v0.3 - https://www.scaleway.com/en/docs/ai-data/managed-inference/reference-content/mistral-7b-instruct-v0.3/
+
 llm = LLM("mistralai/Mistral-7B-Instruct-v0.3")
 
 input = """Below, between <REF> and </REF>, is the content of a resolved ticket, which may include interactions between the submitter and agents.

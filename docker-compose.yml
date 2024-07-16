@@ -21,15 +21,15 @@ services:
 
 
 
-docker run -d --entrypoint optimum-cli \
-       -v /mnt/data:/data \
-       --privileged \
-       -e HF_TOKEN=${HF_TOKEN} \
-       ghcr.io/huggingface/neuronx-tgi:latest \
-       export neuron \
-       --model $MODEL_PATH \
-       --num_cores 2 \
-       /data/$MODEL_PATH-neuron-fpdefault
+# docker run -d --entrypoint optimum-cli \
+#        -v /mnt/data:/data \
+#        --privileged \
+#        -e HF_TOKEN=${HF_TOKEN} \
+#        ghcr.io/huggingface/neuronx-tgi:latest \
+#        export neuron \
+#        --model $MODEL_PATH \
+#        --num_cores 2 \
+#        /data/$MODEL_PATH-neuron-fpdefault
 
 # --auto_cast_type fp16 \
 
@@ -40,3 +40,8 @@ docker run -d --entrypoint optimum-cli \
   #      --privileged \
   #      ghcr.io/huggingface/neuronx-tgi:latest \
   #      --model-id /data/$MODEL_PATH-neuron
+
+
+
+
+aws ec2 start-instances --instance-ids i-0a879ecc1f971c215
