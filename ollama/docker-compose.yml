@@ -18,27 +18,3 @@ services:
 
 
 # https://hub.docker.com/r/ollama/ollama
-
-
-
-
-
-docker run -d --entrypoint optimum-cli \
-       -v /mnt/data:/data \
-       --privileged \
-       -e HF_TOKEN=${HF_TOKEN} \
-       ghcr.io/huggingface/neuronx-tgi:latest \
-       export neuron \
-       --model $MODEL_PATH \
-       --num_cores 2 \
-       /data/$MODEL_PATH-neuron-fpdefault
-
-# --auto_cast_type fp16 \
-
-  # docker run -d -p 8080:80 \
-  #      -v /mnt/data:/data \
-  #      --name aviator \
-  #      --rm \
-  #      --privileged \
-  #      ghcr.io/huggingface/neuronx-tgi:latest \
-  #      --model-id /data/$MODEL_PATH-neuron
