@@ -5,7 +5,7 @@ services:
     image: ollama/ollama
     container_name: ollama
     volumes:
-      - ollama:/root/.ollama
+      - ./ollama:/root/.ollama
     ports:
       - 8080:11434
     deploy:
