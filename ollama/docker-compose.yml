@@ -4,7 +4,7 @@ services:
   ollama:
     image: ollama/ollama
     container_name: ollama
-    command: ollama run llama3
+    command: ollama run $MODEL
     volumes:
       - ./ollama:/root/.ollama
     ports:
