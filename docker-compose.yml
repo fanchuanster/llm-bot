@@ -43,5 +43,5 @@ services:
 
 
 
-
-aws ec2 start-instances --instance-ids i-0a879ecc1f971c215
+# "i-0e4fa2c3ba6940cac" - old 
+# aws ec2 start-instances --instance-ids i-0a879ecc1f971c215
