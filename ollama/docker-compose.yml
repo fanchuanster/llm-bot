@@ -1,6 +1,12 @@
 # version: '3.8' obsolete
 
 services:
+  chromadb:
+    image: chromadb/chroma
+    container_name: chromadb
+    ports:
+      - 8000:8000
+      
   ollama:
     image: ollama/ollama
     container_name: ollama
